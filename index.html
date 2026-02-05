@@ -16,7 +16,9 @@
         .btn-secondary { background: transparent; border: 2px solid var(--primary); color: white; }
         .section { padding: 80px 20px; text-align: center; border-bottom: 1px solid #222; }
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 20px; }
-        .card { background: #1a1a1a; padding: 25px; border-radius: 15px; border-bottom: 4px solid var(--primary); }
+        .card { background: #1a1a1a; padding: 25px; border-radius: 15px; border-bottom: 4px solid var(--primary); transition: 0.3s; }
+        .card:hover { transform: translateY(-10px); }
+        .gallery-card { background: #111; height: 300px; border-radius: 15px; display: flex; align-items: center; justify-content: center; border: 1px dashed var(--primary); color: #444; position: relative; overflow: hidden; }
         .bmi-box { background: #222; padding: 30px; border-radius: 20px; max-width: 400px; margin: 0 auto; }
         input { width: 80%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; }
     </style>
@@ -37,8 +39,20 @@
         <h2 style="color: var(--primary); letter-spacing: 4px;">DREAM. BELIEVE. TRANSFORM.</h2>
         <div style="max-width: 800px; margin: 0 auto; line-height: 1.9; font-size: 1.2rem;">
             <p>"Ek soch zindagi badal deti hai. Meri journey sirf muscles banane ki nahi, khud ko har din behtar sabit karne ki rahi hai." [cite: 2026-01-29]</p>
-            <p style="color: #aaa; font-style: italic;">"Maine wo dard saha hai, wo pasina bahaya hai jo aaj meri asli pehchan hai. Agar main kar sakta hoon, toh aap kyun nahi?" [cite: 2026-01-29]</p>
+            <p style="color: #aaa; font-style: italic;">"Maine wo dard saha hai, wo pasina bahaya hai jo aaj meri asli pehchan hai." [cite: 2026-01-29]</p>
             <p><strong>- Nitesh Rathee (Founder)</strong></p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 style="color: var(--primary);">TRANSFORMATION GALLERY</h2>
+        <p style="color: #666; margin-bottom: 30px;">See the results of dedication and hard work.</p>
+        <div class="grid">
+            <div class="gallery-card"><i class="fas fa-camera fa-2x"></i><br>Loading Transformation...</div>
+            <div class="gallery-card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('owner2.jpg') center/cover;">
+                <span style="background: var(--primary); color: white; padding: 5px 15px; position: absolute; bottom: 10px; border-radius: 5px;">FOUNDER RESULT</span>
+            </div>
+            <div class="gallery-card"><i class="fas fa-camera fa-2x"></i><br>Success Story #3</div>
         </div>
     </div>
 
@@ -62,7 +76,7 @@
     </div>
 
     <footer style="padding: 30px; background: #000; text-align: center; font-size: 14px; color: #555;">
-        Powered by <b>Zippy Web Agency</b>
+        Powered by <b>Zippy Web Agency</b> [cite: 2026-01-29]
     </footer>
 
     <script>
