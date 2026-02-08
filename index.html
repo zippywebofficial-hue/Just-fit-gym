@@ -3,86 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Just Fit Gym | Official</title>
+    <title>Just Fit Gym | BMI & Fitness</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; background: #000; color: white; }
         .classic-font { font-family: 'Montserrat', sans-serif; }
-        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); backdrop-filter: blur(10px); }
-        .modal-content { background: #111; margin: 15% auto; padding: 25px; border-radius: 20px; border: 1px solid #ff4500; width: 85%; max-width: 400px; }
-        .nav-btn { border: 1px solid #333; transition: 0.3s; font-size: 10px; font-weight: 700; }
-        .nav-btn:active { background: #ff4500; border-color: #ff4500; }
-        .hero-gradient { background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        input::-webkit-outer-spin-button, input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
     </style>
 </head>
 <body>
 
-    <header class="relative h-[60vh] flex items-center px-6 overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1470');"></div>
-        <div class="absolute inset-0 hero-gradient"></div>
+    <section class="px-6 py-10">
+        <h2 class="classic-font text-2xl font-black uppercase mb-6 text-orange-600 italic">Check Your Fitness</h2>
         
-        <div class="relative z-10 w-full">
-            <h1 class="classic-font text-4xl font-black italic text-orange-600 leading-none">TRANSFORMATION<br><span class="text-white">JUST FIT GYM</span></h1>
-            <p class="text-xs italic text-gray-400 mt-2">"PUSH YOUR LIMIT"</p>
+        <div class="glass-card rounded-[30px] p-8">
+            <h3 class="text-xl font-bold mb-6">BMI Calculator</h3>
             
-            <div class="mt-6">
-                <p class="text-orange-500 font-bold text-sm uppercase tracking-wider">DREAM. BELIEVE. TRANSFORM.</p>
-                <p class="text-[10px] text-gray-400 mt-1 max-w-[250px]">"Ek soch zindai buahal edet hai. Meri journey sirf nahi, ryd so ha fan dor kydd naine wo dard saha hes ajaj nari din beter sabit dh rahi hei."</p>
-                <button class="mt-4 bg-orange-600 px-8 py-3 rounded-full text-[10px] font-black uppercase">Join Now</button>
-            </div>
-        </div>
-    </header>
-
-    <section class="px-6 py-8">
-        <h2 class="classic-font text-lg font-black uppercase mb-6 border-l-4 border-orange-600 pl-3">Coach & Founder</h2>
-        
-        <div class="bg-white rounded-3xl overflow-hidden shadow-2xl max-w-sm mx-auto">
-            <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2ec617?q=80&w=1470" class="w-full h-72 object-cover" alt="Nitesh Bhaiya">
-            <div class="p-6">
-                <h3 class="text-black text-2xl font-black italic">Nitesh Bhaiya</h3>
-                <p class="text-gray-500 text-[10px] font-bold uppercase">Expert in Pre-workout & more</p>
-                
-                <div class="mt-6 border-t pt-4">
-                    <h4 class="text-black font-black text-lg">Diet Plans</h4>
-                    <a href="https://instagram.com/nitesh_justfit" class="mt-4 flex items-center justify-center space-x-2 bg-orange-600 text-white py-3 rounded-xl text-[10px] font-bold">
-                        <span>📸 VIEW INSTAGRAM PROFILE</span>
-                    </a>
+            <div class="space-y-4">
+                <div>
+                    <label class="text-[10px] uppercase text-gray-400 font-bold tracking-widest">Weight (KG)</label>
+                    <input type="number" id="weight" placeholder="e.g. 70" class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl mt-2 focus:outline-none focus:border-orange-600 text-white">
                 </div>
+                
+                <div>
+                    <label class="text-[10px] uppercase text-gray-400 font-bold tracking-widest">Height (CM)</label>
+                    <input type="number" id="height" placeholder="e.g. 175" class="w-full bg-zinc-900 border border-zinc-800 p-4 rounded-2xl mt-2 focus:outline-none focus:border-orange-600 text-white">
+                </div>
+
+                <button onclick="calculateBMI()" class="w-full bg-orange-600 py-4 rounded-2xl font-black uppercase text-xs tracking-widest mt-4 shadow-lg shadow-orange-600/30">Calculate Now</button>
+            </div>
+
+            <div id="resultBox" class="hidden mt-8 pt-6 border-t border-zinc-800 text-center">
+                <p class="text-gray-400 text-xs uppercase font-bold">Your BMI Score</p>
+                <h4 id="bmiValue" class="text-5xl font-black text-white my-2 italic">24.5</h4>
+                <p id="bmiStatus" class="text-orange-500 font-bold uppercase tracking-widest text-sm">Normal Weight</p>
+                <p id="bmiAdvice" class="text-[10px] text-gray-500 mt-4 leading-relaxed"></p>
             </div>
         </div>
     </section>
 
-    <section class="px-4 py-6 grid grid-cols-3 gap-2">
-        <button onclick="openModal('suppModal')" class="nav-btn py-4 rounded-xl text-center uppercase">Supplements</button>
-        <button onclick="openModal('dietModal')" class="nav-btn py-4 rounded-xl text-center uppercase">Diet Plan</button>
-        <button onclick="openModal('trainModal')" class="nav-btn py-4 rounded-xl text-center uppercase text-orange-500 border-orange-600/30">Elite Training</button>
-    </section>
-
-    <section class="px-6 py-6">
-        <div class="bg-white rounded-3xl p-6 flex items-center justify-between shadow-xl">
-            <div>
-                <h3 class="text-black text-2xl font-black italic">Elite Card</h3>
-                <p class="text-gray-400 text-[10px] font-bold uppercase mt-1">Expert in Body transformation</p>
-            </div>
-            <div class="bg-black p-2 rounded-lg">
-                <p class="text-orange-500 text-[8px] font-bold">Elite Card</p>
-            </div>
-        </div>
-    </section>
-
-    <div id="suppModal" class="modal"><div class="modal-content"><h2 class="classic-font text-xl font-black text-orange-600 mb-4 italic">Supplements</h2><ul class="text-sm text-gray-400 space-y-2 mb-6"><li>• Whey Protein</li><li>• Pre-Workout</li><li>• BCAA</li></ul><button onclick="closeModal('suppModal')" class="bg-orange-600 w-full py-3 rounded-lg font-bold text-xs uppercase">Order Now</button></div></div>
-    <div id="dietModal" class="modal"><div class="modal-content"><h2 class="classic-font text-xl font-black text-orange-600 mb-4 italic">Diet Architecture</h2><div class="grid grid-cols-2 gap-2 mb-6"><div class="bg-zinc-800 p-3 rounded text-center text-xs">VEG</div><div class="bg-zinc-800 p-3 rounded text-center text-xs">NON-VEG</div></div><button onclick="closeModal('dietModal')" class="bg-orange-600 w-full py-3 rounded-lg font-bold text-xs uppercase">Get Plan</button></div></div>
-    <div id="trainModal" class="modal"><div class="modal-content"><h2 class="classic-font text-xl font-black text-orange-600 mb-4 italic">Elite Training</h2><p class="text-gray-400 text-sm mb-6 uppercase">Personal 1-on-1 Results</p><button onclick="closeModal('trainModal')" class="bg-orange-600 w-full py-3 rounded-lg font-bold text-xs uppercase">Join Elite</button></div></div>
-
-    <footer class="p-10 text-center border-t border-zinc-900 bg-black">
-        <p class="text-[8px] text-gray-600 uppercase tracking-[4px] mb-2">Developed By</p>
-        <p class="classic-font font-black text-white text-lg tracking-widest">ZIPPY WEB AGENCY</p>
+    <footer class="py-10 text-center opacity-50">
+        <p class="text-[8px] tracking-[4px]">ZIPPY WEB AGENCY</p>
     </footer>
 
     <script>
-        function openModal(id) { document.getElementById(id).style.display = "block"; }
-        function closeModal(id) { document.getElementById(id).style.display = "none"; }
+        function calculateBMI() {
+            const w = document.getElementById('weight').value;
+            const h = document.getElementById('height').value;
+            
+            if(w > 0 && h > 0) {
+                const bmi = (w / ((h/100) * (h/100))).toFixed(1);
+                document.getElementById('resultBox').classList.remove('hidden');
+                document.getElementById('bmiValue').innerText = bmi;
+                
+                let status = "";
+                let advice = "";
+                let color = "";
+
+                if(bmi < 18.5) {
+                    status = "Underweight";
+                    advice = "Bhai, thoda diet badhao! Supplements aur proper protein ki zaroorat hai.";
+                    color = "#3498db";
+                } else if(bmi < 25) {
+                    status = "Normal / Fit";
+                    advice = "Ekdum mast! Fit ho bhai, bas maintain rakho.";
+                    color = "#2ecc71";
+                } else if(bmi < 30) {
+                    status = "Overweight";
+                    advice = "Thoda cardio shuru karo aur diet control karo. Nitesh Bhaiya se milo!";
+                    color = "#f1c40f";
+                } else {
+                    status = "Obese";
+                    advice = "Warning! Turant transformation shuru karni hogi. Join Just Fit Gym today.";
+                    color = "#e74c3c";
+                }
+
+                document.getElementById('bmiStatus').innerText = status;
+                document.getElementById('bmiStatus').style.color = color;
+                document.getElementById('bmiAdvice').innerText = advice;
+            } else {
+                alert("Please enter valid weight and height!");
+            }
+        }
     </script>
 </body>
 </html>
